@@ -56,7 +56,7 @@
               <hr>
 
               <h3>You want a friend who is always ready to help you.</h3>
-              <select data-placeholder="" class="chosen-select" id="q1">
+              <select required class="chosen-select" id="q1" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -67,7 +67,7 @@
 
 
               <h3>Strong moral views are important qualities for a friend.</h3>
-              <select data-placeholder="" class="chosen-select" id="q2">
+              <select class="chosen-select" id="q2" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -78,7 +78,7 @@
 
 
               <h3>You like friends who are quirky.</h3>
-              <select data-placeholder="" class="chosen-select" id="q3">
+              <select class="chosen-select" id="q3" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -89,7 +89,7 @@
 
 
               <h3>You like friends who are spontaneous.</h3>
-              <select data-placeholder="" class="chosen-select" id="q4">
+              <select class="chosen-select" id="q4" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -100,7 +100,7 @@
 
 
               <h3>You value friends who are loud and funny instead of quiet and shy.</h3>
-              <select data-placeholder="" class="chosen-select" id="q5">
+              <select class="chosen-select" id="q5" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -110,7 +110,7 @@
               </select>
 
               <h3>You want a friend who would rather read a book than go on an adventure. </h3>
-              <select data-placeholder="" class="chosen-select" id="q9">
+              <select class="chosen-select" id="q9" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -120,7 +120,7 @@
               </select>
 
               <h3>You like friends who are not afraid to disagree with you.</h3>
-              <select data-placeholder="" class="chosen-select" id="q10">
+              <select class="chosen-select" id="q10" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -130,7 +130,7 @@
               </select>
 
               <h3>You need a friend who loves being outdoors.</h3>
-              <select data-placeholder="" class="chosen-select" id="q6">
+              <select class="chosen-select" id="q6" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -140,7 +140,7 @@
               </select>
 
               <h3>Your idea of a fun get together involves going to sporting events.</h3>
-              <select data-placeholder="" class="chosen-select" id="q7">
+              <select class="chosen-select" id="q7" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -151,7 +151,7 @@
 
               <h3>You would much rather go to a restaurant and a movie than get together with friends and play games.
               </h3>
-              <select data-placeholder="" class="chosen-select" id="q8">
+              <select class="chosen-select" id="q8" >
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -213,12 +213,14 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
   <script>
-    
+
     
     // Capture the form inputs
-    $("#submit").on("click", function () {
+    $("#submit").on("click", function (event) {
       event.preventDefault();
-      if (($('.form-control').val().trim() !== "")) {
+ 
+      if (($(".form-control").val().trim() !== "") && ($(".chosen-select").val().trim() !== "")) {
+
         // Create an object for the user's data
         var userData = {
           name: $("#name").val(),
@@ -226,13 +228,13 @@
           scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(),]
         }
         // AJAX post the data to the friends API.
-        $.post( "/api/friends", userData, function (data) {
+        $.post("/api/friends", userData, function (data) {
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#matchName").text(data.name);
           $('#matchImg').attr("src", data.photo);
           // Show the modal with the best match
           $("#resultsModal").modal('toggle');
-         
+
         });
       } else {
         $(".modal-title").text("Missing required information");
