@@ -245,7 +245,7 @@
     });
     // modal logic
     $('#closeModal').click(function () {
-      $.get('/', function (req, res) {
+      $.get('*', function (req, res) {
         location.replace(res);
       })
     });
