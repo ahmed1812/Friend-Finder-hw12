@@ -6,6 +6,7 @@ Creating a dating app using Node and Express Servers. This full-stack website wi
 
 ## Friend Finder is deployed to Heroku
   
+  [heroku](https://obscure-shore-52399.herokuapp.com/)
 
 ## NPM Packages
 
@@ -20,4 +21,5 @@ Creating a dating app using Node and Express Servers. This full-stack website wi
   * Express
   * HTML
   * Jquery
+  * Bootstrap
 
